@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>BoraRachar.Api</RootNamespace>
+    <UserSecretsId>9ad6b7c0-de70-48b9-8bea-5b182a4ec193</UserSecretsId>
+    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.33" />
+    <PackageReference Include="Hangfire.Core" Version="1.7.33" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.33" />
+    <PackageReference Include="MediatR.Contracts" Version="1.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="NetDevPack.Identity" Version="6.1.7" />
+    <PackageReference Include="NetDevPack.Security.Jwt.AspNetCore" Version="6.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>    
+    <ProjectReference Include="..\BoraRachar.Application\BoraRachar.Application.csproj" />
+    <ProjectReference Include="..\BoraRachar.Domain.Service.Abstract\BoraRachar.Domain.Service.Abstract.csproj" />
+    <ProjectReference Include="..\BoraRachar.Infra.Bootstrap\BoraRachar.Infra.Bootstrap.csproj" />
+    <ProjectReference Include="..\BoraRachar.Infra.CrossCuting\BoraRachar.Infra.CrossCuting.csproj" />    
+  </ItemGroup>
+
+</Project>

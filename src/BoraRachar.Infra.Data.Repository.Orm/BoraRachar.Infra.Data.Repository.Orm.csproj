@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>BoraRachar.Infra.Data.Repository.Orm</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>   
+    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj" />
+    <ProjectReference Include="..\BoraRachar.Domain.Repository.Orm.Abstract\BoraRachar.Domain.Repository.Orm.Abstract.csproj" />
+    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj" />
+    <ProjectReference Include="..\BoraRachar.Domain.Repository.Orm.Abstract\BoraRachar.Domain.Repository.Orm.Abstract.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EntityMapConfigurations\" />
+  </ItemGroup>
+
+</Project>

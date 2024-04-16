@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>BoraRachar.Domain.Service.Abstract</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup> 
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>   
+    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj" />
+    <ProjectReference Include="..\BoraRachar.Infra.CrossCuting\BoraRachar.Infra.CrossCuting.csproj" />
+    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj" />
+    <ProjectReference Include="..\BoraRachar.Infra.CrossCuting\BoraRachar.Infra.CrossCuting.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\User\CodigoUsers\" />
+  </ItemGroup>
+
+</Project>
