@@ -4,6 +4,7 @@ using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.UpdateUser;
 using BoraRachar.Infra.CrossCuting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BoraRachar.Domain.Service.Concretes.Users;
@@ -13,10 +14,9 @@ public partial class UserService
     public async Task<ResponseDto<None>> UpdateUserAsync(UpdateUserRequestDto request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Metodo iniciado:{0}", nameof(UpdateUserAsync));
-
         try
         {
-            User user = await _userManager.FindByEmailAsync(request.Email);
+            var  user = await _userManager.Users.Where(u => u.Email == request.Email).FirstOrDefaultAsync();
 
             if (user == null)
             {

@@ -41,8 +41,10 @@ public partial class UserService
             }
 
             var entityUser = _mapper.Map<User>(request);
+            //string nome, string email,bool ativo, bool politica, bool termos)
 
-            var resultCreate = await _userManager.CreateAsync(new User(entityUser.Email), request.Password);
+            var resultCreate = await _userManager.CreateAsync(
+                new User(entityUser.Nome,entityUser.Email, true, request.PoliticasPrivacidade, request.TermosUso ), request.Password);
             if (!resultCreate.Succeeded)
             {
                 return ResponseDto.Fail($"Falha ao cadastrar usuário:{resultCreate.Errors.FirstOrDefault()}", HttpStatusCode.BadRequest);

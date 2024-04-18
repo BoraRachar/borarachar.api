@@ -1,6 +1,5 @@
 ﻿using BoraRachar.Domain.Entity.Users;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.AddNewUser;
-using BoraRachar.Domain.Service.Abstract.Dtos.User.AddNewUsers;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.FindOneUser;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.ListUsers;
 
@@ -14,6 +13,8 @@ public class UserMapper : BaseAutoMapper
 			.ReverseMap();
 
 		CreateMap<User, AddNewUserRequestDto>()
+			.ForMember(x => x.PoliticasPrivacidade, opt => opt.MapFrom(x => x.PoliticasPrivacidade))
+			.ForMember(x => x.TermosUso, opt => opt.MapFrom(x => x.TermosUso))
 			.ReverseMap();
 
 		CreateMap<User, UserEntity>()
@@ -31,9 +32,6 @@ public class UserMapper : BaseAutoMapper
 			.ForMember(x => x.AtivoUsuario, opt => opt.MapFrom(x => x.AtivoUsuario))
 			.ForMember(x => x.AtivoDesde, opt => opt.MapFrom(x => x.DataCadastro))
 			.ForMember(x => x.InativoDesde, opt => opt.MapFrom(x => x.DataInativacao))
-			.ReverseMap();
-
-		CreateMap<User, AddNewUsersRequestDto>()
 			.ReverseMap();
 
 		CreateMap<User, FindOneUserResponseDto>()

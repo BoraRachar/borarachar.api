@@ -8,7 +8,6 @@ using BoraRachar.Application.UserCases.User.ResetPassword;
 using BoraRachar.Application.UserCases.User.UpdateUser;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.AddNewUser;
-using BoraRachar.Domain.Service.Abstract.Dtos.User.AddNewUsers;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.FindOneUser;
 using BoraRachar.Infra.CrossCuting;
 using Microsoft.AspNetCore.Mvc;
