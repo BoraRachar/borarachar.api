@@ -3,12 +3,14 @@ using BoraRachar.Api.Controllers.Bases;
 using BoraRachar.Application.UserCases.User.ConfirmEmail;
 using BoraRachar.Application.UserCases.User.CreateNewUser;
 using BoraRachar.Application.UserCases.User.FindOneUser;
+using BoraRachar.Application.UserCases.User.FindUniqueUserName;
 using BoraRachar.Application.UserCases.User.ForgotPassword;
 using BoraRachar.Application.UserCases.User.ResetPassword;
 using BoraRachar.Application.UserCases.User.UpdateUser;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.AddNewUser;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.FindOneUser;
+using BoraRachar.Domain.Service.Abstract.Dtos.User.FindUniqueUserName;
 using BoraRachar.Infra.CrossCuting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +51,16 @@ public class UserController : ApiControllerBase
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> PutUser([FromBody] UpdateUserRequest request)
+	{
+		var response = await _mediator.Send(request);
+		return CreateResult(response);
+	}
+	
+	[HttpGet("find-usuario")]
+	[ProducesResponseType(typeof(ResponseDto<FindUniqueUserNameResponseDto>), StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<IActionResult> GetForgotPassword([FromQuery] FindUniqueUserNameRequest request)
 	{
 		var response = await _mediator.Send(request);
 		return CreateResult(response);

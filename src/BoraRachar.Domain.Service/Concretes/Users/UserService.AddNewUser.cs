@@ -31,6 +31,13 @@ public partial class UserService
                 return ResponseDto.Fail("A senha deve conter 1 letra Maiuscula, 1 Minuscula e 1 caracter especial", HttpStatusCode.BadRequest);
             }
 
+            var userNames = await _userManager.Users.Where(u => u.UserName == request.Usuario).Select(u => u.UserName).ToListAsync();
+            
+            if (userNames.Count > 0)
+            {
+                return ResponseDto.Fail("Usuario ja cadastrado.", HttpStatusCode.BadRequest);
+            }
+
             if (request.TermosUso.Equals(false))
             {
                 return ResponseDto.Fail("Por favor aceite os Termos de Uso", HttpStatusCode.BadRequest);
@@ -41,15 +48,15 @@ public partial class UserService
             }
 
             var entityUser = _mapper.Map<User>(request);
-            //string nome, string email,bool ativo, bool politica, bool termos)
-
+            
+            //new User(Nome, Email, Apelido, Usuario, Politicas de Privacidade, Termos de Uso)
             var resultCreate = await _userManager.CreateAsync(
-                new User(entityUser.Nome,entityUser.Email, true, request.PoliticasPrivacidade, request.TermosUso ), request.Password);
+                new User(request.Nome, request.Email,request.Apelido, request.Usuario,request.PoliticasPrivacidade, request.TermosUso ), request.Password);
+            
             if (!resultCreate.Succeeded)
             {
                 return ResponseDto.Fail($"Falha ao cadastrar usuário:{resultCreate.Errors.FirstOrDefault()}", HttpStatusCode.BadRequest);
             }
-            var user = await _userManager.FindByEmailAsync(request.Email);
 
             return ResponseDto.Sucess("Cadastrado com sucesso", HttpStatusCode.Created);
         }

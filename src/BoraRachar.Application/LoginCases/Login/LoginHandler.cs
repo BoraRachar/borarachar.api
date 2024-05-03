@@ -48,6 +48,6 @@ public class LoginHandler : IRequestHandler<LoginRequest, ResponseDto<UserLoginR
 		var rt = await refreshToken.GenerateRefreshToken(_userManager, _jwtService, request.Email);
 
 
-		return ResponseDto<UserLoginResponseDto>.Sucess(new UserLoginResponseDto(at, rt, user.Nome, user.Email, CriptografiaHelper.EncryptQueryString(user.Id), null));
+		return ResponseDto<UserLoginResponseDto>.Sucess(new UserLoginResponseDto(at, rt, user.Nome, user.Email, CriptografiaHelper.EncryptQueryString(user.Id), user.Apelido, user.UserName));
 	}
 }
