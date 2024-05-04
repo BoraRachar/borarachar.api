@@ -54,7 +54,7 @@ namespace BoraRachar.Application.RefreshTokenCases.GenerateRefreshToken
 			var at = await accessToken.GenerateAccessToken(_userManager, _jwtService, result.Claims[JwtRegisteredClaimNames.Email].ToString());
 			var rt = await refreshToken.GenerateRefreshToken(_userManager, _jwtService, result.Claims[JwtRegisteredClaimNames.Email].ToString());
 
-			return ResponseDto<UserLoginResponseDto>.Sucess(new UserLoginResponseDto(at, rt, user.Nome, user.Email, CriptografiaHelper.EncryptQueryString(user.Id), null));
+			return ResponseDto<UserLoginResponseDto>.Sucess(new UserLoginResponseDto(at, rt, user.Nome, user.Email, CriptografiaHelper.EncryptQueryString(user.Id), user.Apelido, user.UserName));
 
 		}
 	}

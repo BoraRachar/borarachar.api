@@ -1,11 +1,12 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build
 WORKDIR /src
-COPY ["src/BoraRachar.Api/BoraRachar.Api.csproj", "src/BoraRachar.Api/"]
+COPY ["src/BoraRachar.Api/MicroErp.Api.csproj", "src/BoraRachar.Api/"]
 RUN dotnet restore "src/BoraRachar.Api/BoraRachar.Api.csproj"
 COPY . .
 WORKDIR "/src/src/BoraRachar.Api"
