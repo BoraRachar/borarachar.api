@@ -56,7 +56,7 @@ public partial class UserService
                 return ResponseDto.Fail($"Falha ao cadastrar usuário:{resultCreate.Errors.FirstOrDefault()}", HttpStatusCode.BadRequest);
             }
 
-            return ResponseDto.Sucess("Cadastrado com sucesso", HttpStatusCode.Created);
+            return ResponseDto.Sucess("Cadastrado com sucesso", HttpStatusCode.NoContent);
         }
         catch (Exception e)
         {
