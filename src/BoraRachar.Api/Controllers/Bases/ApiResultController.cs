@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Net;
-using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
+﻿using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Infra.CrossCuting;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections;
+using System.Net;
 
 namespace BoraRachar.Api.Controllers.Bases;
 
@@ -34,6 +34,12 @@ public class ApiResultController : ControllerBase
             return StatusCode(statusDto, dto);
 
         var msg = dto?.GetType().GetProperty("Msg")?.GetValue(dto, null);
+
+        if (code is HttpStatusCode.Created || dto?.StatusCode is HttpStatusCode.Created && msg is not { })
+            return Ok();
+
+        if (code is HttpStatusCode.Created || dto?.StatusCode is HttpStatusCode.Created && msg is { })
+            return Ok(dto);
 
         if (code is HttpStatusCode.NoContent || dto?.StatusCode is HttpStatusCode.NoContent && msg is not { })
             return NoContent();
