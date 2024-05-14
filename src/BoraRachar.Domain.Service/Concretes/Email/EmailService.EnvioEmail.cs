@@ -14,8 +14,8 @@ public partial class EmailService
         Configuration.Default.ApiKey.Add("api-key", smtpKey);
 
         var apiInstance = new TransactionalEmailsApi();
-        string SenderName = "Segredos de Ouro";
-        string SenderEmail = "naoresponda@segredosdoouro.com.br";
+        string SenderName = "Bora Rachar";
+        string SenderEmail = "suporte.borarachar@gmail.com";
         SendSmtpEmailSender Email = new SendSmtpEmailSender(SenderName, SenderEmail);
 
         string ToEmail = request.Email;
@@ -53,7 +53,7 @@ public partial class EmailService
                                             <table align='center' border='0' cellpadding='0' cellspacing='0' width='600' style='border-collapse: collapse;'>
                                                  <tr>
                                                      <td align='center'>
-                                                        <a href='https://www.borarachar.online/' target='_blanck'><img src='https://casegredosdeouro.blob.core.windows.net/imagens-sistema/logo_escrita_preto.png' alt='bora rachar' height='120' style='display: block;' /></a>
+                                                        <a href='https://www.borarachar.online/' target='_blanck'><img src='https://i.imgur.com/0sPWr31.png' alt='borarachar Logo' height='120' width='600' style='display: block;' /></a>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -73,7 +73,7 @@ public partial class EmailService
                                             <td>
                                                 <table border='0' cellpadding='0' cellspacing='0' width='100%'>
                                                     <tr>
-                                                        <td width='75%' style='color: #000; font-family: Arial, sans-serif; font-size: 14px;'>
+                                                        <td width='75%' style='color: #000; font-family: Arial, sans-serif; font-size: 20px;'>
                                                             Bora Rachar!
                                                         </td>         									
                                                     </tr>

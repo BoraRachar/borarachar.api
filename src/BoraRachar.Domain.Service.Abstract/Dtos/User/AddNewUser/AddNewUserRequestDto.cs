@@ -9,7 +9,6 @@ public class AddNewUserRequestDto : RequestDto
     public string Email { get; set; }
     public string Usuario { get; set; }
     public string Password { get; set; }
-    public string ConfirmPassword { get; set; }
     public bool TermosUso { get; set; }
     public bool PoliticasPrivacidade { get; set; }
 }

@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+	<InvariantGlobalization>false</InvariantGlobalization>
     <RootNamespace>BoraRachar.Infra.Data.Repository.Orm</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -21,10 +22,6 @@
     <ProjectReference Include="..\BoraRachar.Domain.Repository.Orm.Abstract\BoraRachar.Domain.Repository.Orm.Abstract.csproj" />
     <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj" />
     <ProjectReference Include="..\BoraRachar.Domain.Repository.Orm.Abstract\BoraRachar.Domain.Repository.Orm.Abstract.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EntityMapConfigurations\" />
   </ItemGroup>
 
 </Project>

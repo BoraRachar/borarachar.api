@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using BoraRachar.Application.Bases;
+﻿using BoraRachar.Application.Bases;
+using FluentValidation;
 
 namespace BoraRachar.Application.UserCases.User.CreateNewUser;
 
@@ -12,12 +12,6 @@ public class CreateNewUserValidator : RequestValidator<CreateNewUserRequest>
             .WithMessage("Por favor, informe a senha")
             .MinimumLength(8)
             .WithMessage("Por favor, a senha deve ter no minimo 8 caracteres");
-
-        RuleFor(r => r.ConfirmPassword)
-            .NotEmpty()
-            .WithMessage("Por favor, informe a confirmação de senha")
-            .Equal(r => r.Password)
-            .WithMessage("As senhas não conferem");
 
         RuleFor(r => r.Email)
             .NotEmpty()

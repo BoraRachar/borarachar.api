@@ -32,7 +32,7 @@ public partial class UserService
             }
 
             var userNames = await _userManager.Users.Where(u => u.UserName == request.Usuario).Select(u => u.UserName).ToListAsync();
-            
+
             if (userNames.Count > 0)
             {
                 return ResponseDto.Fail("Usuario ja cadastrado.", HttpStatusCode.BadRequest);
@@ -47,12 +47,10 @@ public partial class UserService
                 return ResponseDto.Fail("Por favor, Leia as Politicas de Privacidade", HttpStatusCode.BadRequest);
             }
 
-            var entityUser = _mapper.Map<User>(request);
-            
             //new User(Nome, Email, Apelido, Usuario, Politicas de Privacidade, Termos de Uso)
             var resultCreate = await _userManager.CreateAsync(
-                new User(request.Nome, request.Email,request.Apelido, request.Usuario,request.PoliticasPrivacidade, request.TermosUso ), request.Password);
-            
+                new User(request.Nome, request.Email, request.Apelido, request.Usuario, request.PoliticasPrivacidade, request.TermosUso), request.Password);
+
             if (!resultCreate.Succeeded)
             {
                 return ResponseDto.Fail($"Falha ao cadastrar usuário:{resultCreate.Errors.FirstOrDefault()}", HttpStatusCode.BadRequest);
