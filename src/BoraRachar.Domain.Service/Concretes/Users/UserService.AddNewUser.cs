@@ -49,14 +49,14 @@ public partial class UserService
 
             //new User(Nome, Email, Apelido, Usuario, Politicas de Privacidade, Termos de Uso)
             var resultCreate = await _userManager.CreateAsync(
-                new User(request.Nome, request.Email, request.Apelido, request.Usuario, request.PoliticasPrivacidade, request.TermosUso), request.Password);
+                new User(request.Nome, request.Email, request.Nome, request.Usuario, request.PoliticasPrivacidade, request.TermosUso), request.Password);
 
             if (!resultCreate.Succeeded)
             {
                 return ResponseDto.Fail($"Falha ao cadastrar usuário:{resultCreate.Errors.FirstOrDefault()}", HttpStatusCode.BadRequest);
             }
 
-            return ResponseDto.Sucess(HttpStatusCode.Created);
+            return ResponseDto.Sucess("Cadastrado com sucesso.", HttpStatusCode.NoContent);
         }
         catch (Exception e)
         {

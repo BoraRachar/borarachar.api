@@ -16,11 +16,6 @@ public class ResetPasswordHandler : IRequestHandler<ResetPasswordRequest, Respon
 
     public Task<ResponseDto<None>> Handle(ResetPasswordRequest request, CancellationToken cancellationToken)
     {
-        ResetPasswordRequest request0 = new ResetPasswordRequest();
-        request0.NovaSenha = request.NovaSenha;
-        request0.ConfirmacaoSenha = request.ConfirmacaoSenha;
-        request0.Email = request.Email;
-
-        return _userService.ResetPasswordAsync(request0, cancellationToken);
+        return _userService.ResetPasswordAsync(request, cancellationToken);
     }
 }

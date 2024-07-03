@@ -17,11 +17,12 @@ public partial class UserService
         var user = await _userManager.FindByEmailAsync(request.Email);
 
         if (user == null)
+        {
             return ResponseDto<None>.Fail(HttpStatusCode.NotFound);
+        }
 
-        var verifyCode = await _repositoryVerifyUser.Query.Where(c => c.UserId == user.Id).FirstOrDefaultAsync();
-
-
+        var verifyCode = await _repositoryVerifyUser.Query.Where(c => c.UserId == user.Id && c.Code == request.Code).FirstOrDefaultAsync();
+        
         if (verifyCode.Ativo.Equals(true))
         {
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
