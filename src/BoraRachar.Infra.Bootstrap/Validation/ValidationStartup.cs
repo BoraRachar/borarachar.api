@@ -1,7 +1,7 @@
-﻿using System.Globalization;
+﻿using BoraRachar.Application.Bases;
 using FluentValidation.AspNetCore;
-using BoraRachar.Application.Bases;
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
 
 namespace BoraRachar.Infra.Bootstrap.Validation;
 
@@ -14,7 +14,7 @@ public static class ValidationStartup
             {
                 s.LocalizationEnabled = true;
                 s.DisableDataAnnotationsValidation = true;
-                s.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR");
+                s.ValidatorOptions.LanguageManager.Culture = new CultureInfo("pt-BR", true);
                 s.RegisterValidatorsFromAssemblyContaining(typeof(RequestValidator<>));
             });
         return services;
