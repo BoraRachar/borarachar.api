@@ -17,7 +17,7 @@ public partial class UserService
         logger.LogInformation("Metodo iniciado:{0}", nameof(FindUniqueUserNameAsync));
         try
         {
-            var  users = await _userManager.Users.Where(u => u.UserName == requestDto.Usuario).Select(u => u.UserName).ToListAsync();
+            var  users = await _userManager.Users.Where(u => u.UserName == requestDto.Usuario).ToListAsync();
 
             if (users.Count <= 0)
             {
@@ -25,7 +25,7 @@ public partial class UserService
             }
 
 
-            MailAddress enderecoEmail = new MailAddress(requestDto.Email);
+            MailAddress enderecoEmail = new MailAddress(users.FirstOrDefault().Email);
             
             string nomeUsuario = enderecoEmail.User;
 
