@@ -24,4 +24,16 @@
     <Folder Include="Dtos\User\CodigoUsers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Dtos\User\ListUsers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Dtos\User\ListUsers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Dtos\User\ListUsers\**" />
+  </ItemGroup>
+
 </Project>

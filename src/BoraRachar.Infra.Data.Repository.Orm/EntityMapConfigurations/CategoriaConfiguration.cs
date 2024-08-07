@@ -23,8 +23,8 @@ public class CategoriaConfiguration : IEntityTypeConfiguration<Categoria>
             .HasColumnName("DataCadastro")
             .IsRequired();
 
-        builder.Property(x => x.Status)
-           .HasColumnName("Status")
+        builder.Property(x => x.Ativo)
+           .HasColumnName("Ativo")
            .IsRequired();
     }
 }

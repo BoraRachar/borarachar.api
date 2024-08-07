@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using BoraRachar.Domain.Service.Abstract.Interfaces.Categorias;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Email;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Users;
+using BoraRachar.Domain.Service.Concretes.Categorias;
 using BoraRachar.Domain.Service.Concretes.Email;
 using BoraRachar.Domain.Service.Concretes.Users;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,9 @@ public static class ServiceStartup
 		services.AddTransient<IUserService, UserService>();
 		services.AddScoped<IAcessManager, AccessManager>();
 		services.AddScoped<IEmailService, EmailService>();
+		
+		// Categorias
+		services.AddScoped<ICategoriaService, CategoriaService>();
 
 		return services;
 	}

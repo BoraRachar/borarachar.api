@@ -35,7 +35,6 @@ public partial class UserService : BaseService, IUserService
         _repositoryVerifyUser = repositoryVerifyUser;
     }
 
-
     public static int GenerateCode()
     {
         Random rand = new Random();
