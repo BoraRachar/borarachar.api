@@ -6,5 +6,5 @@ public class Categoria : BaseEntity
 {
     public string Descricao { get; set; }
     public DateTime DataCadastro { get; set; }
-    public bool Status { get; set; }
+    public bool Ativo { get; set; }
 }
