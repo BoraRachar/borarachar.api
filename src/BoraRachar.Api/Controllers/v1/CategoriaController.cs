@@ -4,11 +4,12 @@ using BoraRachar.Application.CategoriaCases.Categoria.ListCategorias;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.Categorias.ListCategorias;
 using BoraRachar.Infra.CrossCuting;
+using Hangfire;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoraRachar.Api.Controllers.v1;
-
 public class CategoriaController: ApiControllerBase
 {
     private readonly IMediator _mediator;

@@ -27,7 +27,13 @@ public class LoginHandler : IRequestHandler<LoginRequest, ResponseDto<UserLoginR
 
 	public async Task<ResponseDto<UserLoginResponseDto>> Handle(LoginRequest request, CancellationToken cancellationToken)
 	{
-		var user = await _userManager.Users.Where(u => u.Email == request.Email).FirstOrDefaultAsync();
+
+		bool isEmail = CriptografiaHelper.VerifyEmail(request.Email);
+		
+		var user = isEmail 
+			? await _userManager.Users.Where(u => u.Email == request.Email).FirstOrDefaultAsync() 
+			: await _userManager.Users.Where(u => u.UserName == request.Email).FirstOrDefaultAsync() ;
+	
 		if (user is null)
 		{
 			return ResponseDto<UserLoginResponseDto>.Fail("Usuário ou senha inválidos.", HttpStatusCode.BadRequest);
@@ -44,10 +50,9 @@ public class LoginHandler : IRequestHandler<LoginRequest, ResponseDto<UserLoginR
 		AccessToken accessToken = new AccessToken();
 		RefreshToken refreshToken = new RefreshToken();
 
-		var at = await accessToken.GenerateAccessToken(_userManager, _jwtService, request.Email);
-		var rt = await refreshToken.GenerateRefreshToken(_userManager, _jwtService, request.Email);
+		var at = await accessToken.GenerateAccessToken(_userManager, _jwtService, user.Email);
+		var rt = await refreshToken.GenerateRefreshToken(_userManager, _jwtService, user.Email);
 
-
-		return ResponseDto<UserLoginResponseDto>.Sucess(new UserLoginResponseDto(at, rt, user.Nome, user.Email, CriptografiaHelper.EncryptQueryString(user.Id), user.Apelido, user.UserName));
+		return ResponseDto<UserLoginResponseDto>.Sucess(new UserLoginResponseDto(at, rt, user.Nome, user.Email, CriptografiaHelper.EncryptQueryString(user.Id), user.UserName));
 	}
 }

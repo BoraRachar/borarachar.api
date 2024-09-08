@@ -9,19 +9,15 @@ public class Grupos : BaseEntity
         string idCategoria, 
         string descricao, 
         TipoDivisao tipoDivisao,
-        string? linkConvite, 
-        string userAdm, 
         string? outrasCategorias
     )
     {
         Id = Guid.NewGuid().ToString().ToLower();
         IdCategoria = idCategoria;
         Descricao = descricao;
-        TipoDivisao = tipoDivisao;
         Deleted = false;
         Ativo = true;
-        LinkConvite = linkConvite;
-        UserAdm = userAdm;
+        TipoDivisao = tipoDivisao;
         OutrasCategorias = outrasCategorias;
         DataCadastro = DateTime.UtcNow;
         DataAtualizacao = DateTime.UtcNow;

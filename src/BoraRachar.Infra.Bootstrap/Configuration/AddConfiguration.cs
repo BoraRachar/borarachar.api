@@ -60,7 +60,10 @@ public static class AddConfiguration
 		app.UseExceptionHandler("/error");
 		app.UseHealthCheck();
 		app.UseHttpsRedirection();
+		app.UseStaticFiles();
 		app.UseRouting();
+		app.UseAuthentication();
+		app.UseAuthorization();
 		app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
 		return app;

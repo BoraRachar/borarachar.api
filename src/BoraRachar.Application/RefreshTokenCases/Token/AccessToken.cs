@@ -3,6 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 using NetDevPack.Security.Jwt.Core.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 using BoraRachar.Domain.Entity.Users;
 
 namespace BoraRachar.Application.RefreshTokenCases.Token
@@ -13,30 +14,22 @@ namespace BoraRachar.Application.RefreshTokenCases.Token
         {
             var user = await userManager.FindByEmailAsync(email);
             var userRoles = await userManager.GetRolesAsync(user);
-            var identityClaims = new ClaimsIdentity();
-            identityClaims.AddClaims(await userManager.GetClaimsAsync(user));
-            identityClaims.AddClaims(userRoles.Select(s => new Claim("role", s)));
-
-            identityClaims.AddClaim(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
-            identityClaims.AddClaim(new Claim(JwtRegisteredClaimNames.Email, user.Email));
-            identityClaims.AddClaim(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
-
-            var handler = new JwtSecurityTokenHandler();
-
-            var securityToken = handler.CreateToken(new SecurityTokenDescriptor
+            var claims = new List<Claim>
             {
-                Issuer = "https://borarachar.online",
-                Audience = "BoraRachar.RefreshToken.API",
-                SigningCredentials = await jwtService.GetCurrentSigningCredentials(),
-                Subject = identityClaims,
-                NotBefore = DateTime.UtcNow,
-                Expires = DateTime.UtcNow.AddMinutes(60),
-                IssuedAt = DateTime.UtcNow,
-                TokenType = "at+jwt"
-            });
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
 
-            var encodedJwt = handler.WriteToken(securityToken);
-            return encodedJwt;
+            claims.AddRange(userRoles.Select(r => new Claim(ClaimTypes.Role, r)));
+            claims.AddRange(await userManager.GetClaimsAsync(user));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("94ec8dc3fc663b2d178f32ea4d7d8f9bfa8385c5"));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var securityToken = new JwtSecurityToken(issuer: "https://borarachar.online", audience: "BoraRachar.API",claims: claims, expires: DateTime.UtcNow.AddDays(1),
+                signingCredentials: creds);
+          
+            return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }
     }
 }

@@ -24,9 +24,9 @@ public static class ServiceStartup
 		// Categorias
 		services.AddScoped<ICategoriaService, CategoriaService>();
 
-		#region Grupos
-			services.AddScoped<IGroupService, GroupService>();
-		#endregion
+		// Grupos
+		services.AddScoped<IGroupService, GroupService>();
+		
 
 		return services;
 	}

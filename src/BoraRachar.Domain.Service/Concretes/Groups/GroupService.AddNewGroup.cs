@@ -1,22 +1,21 @@
 using System.Net;
 using BoraRachar.Domain.Entity.Grupos;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
-using BoraRachar.Domain.Service.Abstract.Dtos.Grupo.AdicionarGrupo;
+using BoraRachar.Domain.Service.Abstract.Dtos.Categorias.AddCategoria;
+using BoraRachar.Domain.Service.Concretes.Helpers;
 using BoraRachar.Infra.CrossCuting;
 
 namespace BoraRachar.Domain.Service.Concretes.Groups;
 
 public partial class GroupService 
 {
-    public async Task<ResponseDto<None>> CreateNewGroup(AdicionarGrupoRequestDto grupos, CancellationToken cancellation)
+    public async Task<ResponseDto<None>> CreateNewGroup(AddCategoriaRequestDto request, CancellationToken cancellation)
     {
         var novoGrupo = new Grupos(
-            idCategoria: grupos.IdCategoria,
-            descricao: grupos.Descricao,
-            tipoDivisao: grupos.TipoDivisao,
-            linkConvite: grupos.LinkConvite,
-            userAdm: grupos.UserAdm,
-            outrasCategorias: grupos.OutrasCategorias
+            idCategoria: request.IdCategoria,
+            descricao: request.Descricao,
+            tipoDivisao: ServiceHelpers.GetEnumValue(request.TipoDivisao),
+            outrasCategorias: request.OutrasCategorias
         );
 
         await _repository.InsertAsync(novoGrupo, cancellation);

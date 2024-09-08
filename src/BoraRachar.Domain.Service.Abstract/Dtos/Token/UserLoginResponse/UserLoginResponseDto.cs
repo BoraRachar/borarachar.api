@@ -2,7 +2,7 @@
 {
 	public class UserLoginResponseDto
 	{
-		public UserLoginResponseDto(string at, string rf, string nome, string email, string cod, string apelido, string usuario)
+		public UserLoginResponseDto(string at, string rf, string nome, string email, string cod, string usuario)
 		{
 			AccessToken = at;
 			RefreshToken = rf;
@@ -10,7 +10,6 @@
 			Nome = nome;
 			Email = email;
 			Cod = cod;
-			Apelido = apelido;
 			Usuario = usuario;
 		}
 
@@ -20,7 +19,6 @@
 		public string Nome { get; set; }
 		public string Email { get; set; }
 		public string Cod { get; set; }
-		public string  Apelido { get; set; }
 		public string Usuario { get; set; }
 	}
 }
