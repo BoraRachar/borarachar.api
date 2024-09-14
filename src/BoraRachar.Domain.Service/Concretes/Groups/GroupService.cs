@@ -25,7 +25,4 @@ public partial class GroupService: BaseService, IGroupService
         _mapper = mapper;
         _repository = repository;
     }
-    
-    
-    
 }

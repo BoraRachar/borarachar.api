@@ -15,8 +15,16 @@ public class GruposConfiguration : IEntityTypeConfiguration<Grupos>
             .HasColumnName("IdCategoria")
             .IsRequired();
 
+        builder.Property(x => x.Nome)
+            .HasColumnName("Nome")
+            .IsRequired();
+
         builder.Property(x => x.Descricao)
             .HasColumnName("Descricao")
+            .IsRequired();
+
+        builder.Property(x => x.ImgGrupo)
+            .HasColumnName("ImgGrupo")
             .IsRequired();
 
         builder.Property(x => x.Deleted)
