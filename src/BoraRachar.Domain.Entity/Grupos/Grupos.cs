@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using BoraRachar.Domain.Entity.Bases;
 using BoraRachar.Domain.Entity.Enum;
 
@@ -9,7 +10,7 @@ public class Grupos : BaseEntity
         string nome, 
         string idCategoria, 
         string descricao, 
-        TipoDivisao tipoDivisao,
+        int tipoDivisao,
         string? outrasCategorias,
         string imgGrupo
     )
@@ -27,11 +28,12 @@ public class Grupos : BaseEntity
         DataAtualizacao = DateTime.UtcNow;
     }
 
-public string Nome { get; private set; }
+    public string Nome { get; private set; }
+    [ForeignKey("Categorias")]
     public string IdCategoria { get; private set; }
     public string Descricao { get; private set; }
     public string ImgGrupo { get; private set; }
-    public TipoDivisao TipoDivisao { get; set; }
+    public int TipoDivisao { get; set; }
     public bool Deleted { get; private set; }
     public bool Ativo { get; private set; }
     public string? LinkConvite { get; private set; }

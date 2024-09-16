@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BoraRachar.Api.Controllers.v1;
-[Authorize("Bearer")]
+// [Authorize("Bearer")]
 public class CategoriaController: ApiControllerBase
 {
     private readonly IMediator _mediator;

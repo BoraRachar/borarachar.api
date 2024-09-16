@@ -11,8 +11,8 @@ public class GruposConfiguration : IEntityTypeConfiguration<Grupos>
         builder.ToTable("Grupos");
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.IdCategoria)
-            .HasColumnName("IdCategoria")
+        builder.Property(x => x.Id)
+            .HasColumnName("IdGrupo")
             .IsRequired();
 
         builder.Property(x => x.Nome)
@@ -22,13 +22,20 @@ public class GruposConfiguration : IEntityTypeConfiguration<Grupos>
         builder.Property(x => x.Descricao)
             .HasColumnName("Descricao")
             .IsRequired();
+        
+        builder.Property(x => x.IdCategoria)
+            .HasColumnName("IdCategoria")
+            .IsRequired();
 
         builder.Property(x => x.ImgGrupo)
-            .HasColumnName("ImgGrupo")
+            .HasColumnName("ImgGrupo");
+       
+        builder.Property(x => x.TipoDivisao)
+            .HasColumnName("TipoDivisao")
             .IsRequired();
 
         builder.Property(x => x.Deleted)
-            .HasColumnName("Deletado")
+            .HasColumnName("Deleted")
             .IsRequired();
 
         builder.Property(x => x.Ativo)
@@ -39,19 +46,16 @@ public class GruposConfiguration : IEntityTypeConfiguration<Grupos>
             .HasColumnName("LinKConvite");
 
         builder.Property(x => x.UserAdm)
-            .HasColumnName("UserAdm")
-            .IsRequired();
+            .HasColumnName("UserAdm");
 
         builder.Property(x => x.OutrasCategorias)
-            .HasColumnName("OutrasCategorias")
-            .IsRequired();
+            .HasColumnName("OutrasCategorias");
 
         builder.Property(x => x.DataCadastro)
             .HasColumnName("DataCadastro")
             .IsRequired();
 
         builder.Property(x => x.DataAtualizacao)
-            .HasColumnName("DataAtualizacao")
-            .IsRequired();
+            .HasColumnName("DataAtualizacao");
     }
 }
