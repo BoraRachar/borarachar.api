@@ -35,12 +35,7 @@ builder
      });
 
 var app = builder.Build();
+
 app.UseCors("CorsPolicy");
 app.UseDefaultConfigure(app.Environment, applicationName);
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
 app.Run();

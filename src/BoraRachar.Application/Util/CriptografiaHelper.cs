@@ -1,5 +1,7 @@
-﻿using System.Security.Cryptography;
+﻿using System.Net.Mail;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BoraRachar.Application.Util;
 
@@ -48,5 +50,19 @@ public static class CriptografiaHelper
 		}
 
 		return cipherText;
+	}
+
+	public static bool VerifyEmail(string email)
+	{
+		try
+		{
+			MailAddress m = new MailAddress(email);
+
+			return true;
+		}
+		catch (FormatException)
+		{
+			return false;
+		}
 	}
 }

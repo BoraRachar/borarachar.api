@@ -3,6 +3,7 @@ using System.Net.Mail;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.FindUniqueUserName;
+using BoraRachar.Domain.Service.Concretes.Helpers;
 using BoraRachar.Domain.Utils;
 using BoraRachar.Infra.CrossCuting;
 using Microsoft.EntityFrameworkCore;
@@ -32,7 +33,7 @@ public partial class UserService
             List<string> userNames = new List<string>();
             for (var i = 0; i < 3; i++)
             {
-                var randon = Helpers.randonName();
+                var randon = ServiceHelpers.randonName();
                 userNames.Add(string.Concat(nomeUsuario,"-", randon));
             }
 

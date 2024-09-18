@@ -15,8 +15,8 @@ jobs:
             - name: Login in DockerHub
               uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
               with:
-                  username: ${{ secrets.Docker_User }}
-                  password: ${{ secrets.Docker_Pass }}
+                  username: ${{ secrets.DOCKER_USER }}
+                  password: ${{ secrets.DOCKER_PASS }}
             
             - name: Get metadata(tag, label)
               id: meta

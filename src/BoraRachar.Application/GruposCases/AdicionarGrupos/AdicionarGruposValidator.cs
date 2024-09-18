@@ -1,15 +1,15 @@
 using BoraRachar.Application.Bases;
-using BoraRachar.Domain.Service.Abstract.Dtos.Grupo.AdicionarGrupo;
+using BoraRachar.Domain.Service.Abstract.Dtos.Categorias.AddCategoria;
 using FluentValidation;
 
 namespace BoraRachar.Application.GruposCases.AdicionarGrupos;
 
-public class AdicionarGruposValidator : RequestValidator<AdicionarGrupoRequestDto>
+public class AdicionarGruposValidator : RequestValidator<AdicionarGrupoRequest>
 {
     public AdicionarGruposValidator()
     {
-        RuleFor(group => group.UserAdm)
+        RuleFor(r => r.Descricao)
             .NotEmpty()
-            .WithMessage("O usuário administradoré obrigatório!");
+            .WithMessage("Por favor, informe a descricao");
     }
 }

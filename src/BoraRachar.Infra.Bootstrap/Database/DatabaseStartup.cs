@@ -5,6 +5,7 @@ using BoraRachar.Domain.Repository.Orm.Abstract.Repositories;
 using BoraRachar.Infra.Data.Repository.Orm.Contexts;
 using BoraRachar.Infra.Data.Repository.Orm.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -46,7 +47,11 @@ public static class Startup
         }).AddEntityFrameworkStores<DbContextUser>()
           .AddDefaultTokenProviders();
 
-        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+        services.AddAuthentication(opt =>
+        {
+            opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
         {
             options.TokenValidationParameters = new TokenValidationParameters
             {
@@ -55,10 +60,18 @@ public static class Startup
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
                 ValidIssuer = "https://borarachar.online",
-                ValidAudience = "BoraRachar.RefreshToken.API"
+                ValidAudience = "BoraRachar.API"
             };
         });
 
+        services.AddAuthorization(auth =>
+        {
+            auth.AddPolicy("Bearer", Policy =>
+            {
+                Policy.RequireAuthenticatedUser();
+                Policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+            });
+        });
         services.AddAuthorization();
         services.AddMemoryCache();
         services.AddJwksManager().PersistKeysInMemory().UseJwtValidation();
