@@ -33,7 +33,7 @@ public partial class GroupService
                 descricao: request.Descricao,
                 tipoDivisao: request.TipoDivisao,
                 outrasCategorias: request.OutrasCategorias,
-                imgGrupo: request.ImgGrupo
+                imgGrupo: request.ImgGrupo!
             );
 
             await _repository.InsertAsync(novoGrupo, cancellation);
@@ -41,7 +41,7 @@ public partial class GroupService
 
             if (request?.Participantes?.Count > 0)
             {
-                foreach (var participante in request?.Participantes)
+                foreach (var participante in request.Participantes)
                 {
                     
                 }
