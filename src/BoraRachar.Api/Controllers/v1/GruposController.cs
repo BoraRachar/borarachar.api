@@ -1,7 +1,9 @@
 using System.Security.Claims;
 using BoraRachar.Api.Controllers.Bases;
 using BoraRachar.Application.GruposCases.AdicionarGrupos;
+using BoraRachar.Application.GruposCases.ListarGrupo;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
+using BoraRachar.Domain.Service.Abstract.Dtos.Grupos.ListarGrupo;
 using BoraRachar.Infra.CrossCuting;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -18,7 +20,6 @@ public class GruposController : ApiControllerBase
     }
     
     [HttpPost]
- 
     [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -34,4 +35,14 @@ public class GruposController : ApiControllerBase
         var response = await _mediator.Send(grupoRequest);
         return CreateResult(response);
     }
+
+    [HttpPost("listar-grupos")]
+    [ProducesResponseType(typeof(ResponseDto<IEnumerable<ListarGrupoResponseDto>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> PostCategoria([FromQuery] ListarGrupoRequest request)
+    {
+        var response = await _mediator.Send(request);
+        return CreateResult(response);
+    }   
 }
