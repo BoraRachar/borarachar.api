@@ -16,7 +16,7 @@ public class Grupos : BaseEntity
     )
     {
         Id = Guid.NewGuid().ToString().ToLower();
-    Nome = nome;
+        Nome = nome;
         IdCategoria = idCategoria;
         Descricao = descricao;
         Deleted = false;
@@ -41,4 +41,5 @@ public class Grupos : BaseEntity
     public string? OutrasCategorias { get; private set; }
     public DateTime DataCadastro { get; private set; }
     public DateTime? DataAtualizacao { get; private set; }
+    public string[] Participantes { get; set; }
 }

@@ -41,6 +41,8 @@ public class GruposConfiguration : IEntityTypeConfiguration<Grupos>
         builder.Property(x => x.Ativo)
             .HasColumnName("Ativo")
             .IsRequired();
+        
+        builder.Ignore(x => x.Participantes);
 
         builder.Property(x => x.LinkConvite)
             .HasColumnName("LinKConvite");
