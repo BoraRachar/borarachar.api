@@ -1,20 +1,17 @@
-using System;
 using System.Drawing;
-using System.IO;
 using BoraRachar.Domain.Entity.Enum;
 
 namespace BoraRachar.Domain.Service.Concretes.Helpers;
 
 public class ServiceHelpers
 {
-    
     public static TipoDivisao GetEnumValue(int tipo)
     {
         System.Enum.TryParse(tipo.ToString(), out TipoDivisao value);
-   
+
         return value;
     }
-    
+
     public static string randonName()
     {
         int tamanho = 6;
@@ -29,17 +26,22 @@ public class ServiceHelpers
 
     public static bool IsBase64Image(string base64Str)
     {
-        if(base64Str.Contains(','))
+        base64Str = base64Str.Trim();
+        if (base64Str.Length % 4 != 0)
         {
-            base64Str = base64Str.Split(',')[1];
+            return false;
         }
+
         try
         {
             byte[] imageBytes = Convert.FromBase64String(base64Str);
-            using (MemoryStream ms = new MemoryStream(imageBytes))
-            {
-                return true;
+
+            using (var  ms = new MemoryStream(imageBytes))
+            { 
+                System.Drawing.Image img = Image.FromStream(ms);
             }
+
+            return true;
         }
         catch (Exception e)
         {

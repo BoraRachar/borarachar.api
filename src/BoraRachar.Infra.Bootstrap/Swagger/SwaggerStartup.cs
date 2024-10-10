@@ -8,7 +8,8 @@ namespace BoraRachar.Infra.Bootstrap.Swagger;
 
 public static class SwaggerStartup
 {
-    public static IServiceCollection AddSwaggerApi<TOperationFilter, TDocumentFilter>(this IServiceCollection services, string applicationName)
+    public static IServiceCollection AddSwaggerApi<TOperationFilter, TDocumentFilter>(this IServiceCollection services,
+        string applicationName)
         where TOperationFilter : IOperationFilter
         where TDocumentFilter : IDocumentFilter
     {
@@ -49,14 +50,15 @@ public static class SwaggerStartup
                             Id = "Bearer"
                         }
                     },
-                    new string[] {}
+                    new string[] { }
                 }
             });
 
             var currentAssembly = Assembly.GetExecutingAssembly();
             var xmlDocs = currentAssembly.GetReferencedAssemblies()
                 .Union(new[] { currentAssembly.GetName() })
-                .Select(a => Path.Combine(Path.GetDirectoryName(currentAssembly.Location) ?? string.Empty, $"{a.Name}.xml"))
+                .Select(a =>
+                    Path.Combine(Path.GetDirectoryName(currentAssembly.Location) ?? string.Empty, $"{a.Name}.xml"))
                 .Where(File.Exists).ToArray();
 
             Array.ForEach(xmlDocs, (d) => { options.IncludeXmlComments(d); });

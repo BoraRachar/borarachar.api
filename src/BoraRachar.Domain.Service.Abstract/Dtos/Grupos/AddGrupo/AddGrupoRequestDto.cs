@@ -4,6 +4,7 @@ namespace BoraRachar.Domain.Service.Abstract.Dtos.Grupos.AddGrupo;
 
 public class AddGrupoRequestDto: RequestDto
 {
+    public string UserCod { get; set; }
     public string Nome { get; set; }
     public string Descricao { get; set; }
     public string IdCategoria { get; set; }

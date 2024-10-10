@@ -13,10 +13,12 @@
     <PackageReference Include="Azure.Storage.Blobs" Version="12.15.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
     <PackageReference Include="sib_api_v3_sdk" Version="3.3.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
     <PackageReference Include="ViaCep" Version="3.2.19" />
   </ItemGroup>
 
   <ItemGroup>    
+    <ProjectReference Include="..\BoraRachar.Application\BoraRachar.Application.csproj" />    
     <ProjectReference Include="..\BoraRachar.Domain.Repository.Orm.Abstract\BoraRachar.Domain.Repository.Orm.Abstract.csproj" />
     <ProjectReference Include="..\BoraRachar.Domain.Service.Abstract\BoraRachar.Domain.Service.Abstract.csproj" />
     <ProjectReference Include="..\BoraRachar.Domain.Repository.Orm.Abstract\BoraRachar.Domain.Repository.Orm.Abstract.csproj" />

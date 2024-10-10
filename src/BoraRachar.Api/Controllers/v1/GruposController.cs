@@ -25,13 +25,6 @@ public class GruposController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> CriarNovoGrupo([FromBody] AdicionarGrupoRequest grupoRequest)
     {
-        // var identity = HttpContext.User.Identity as ClaimsIdentity;
-        // if (identity != null)
-        // {
-        //     IEnumerable<Claim> claims = identity.Claims;
-        //     // var test = identity.FindFirst("teste").Value;
-        // }
-        
         var response = await _mediator.Send(grupoRequest);
         return CreateResult(response);
     }

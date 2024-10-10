@@ -7,6 +7,7 @@ namespace BoraRachar.Domain.Entity.Grupos;
 public class Grupos : BaseEntity
 {
     public Grupos(
+        string userAdm,
         string nome, 
         string idCategoria, 
         string descricao, 
@@ -16,6 +17,7 @@ public class Grupos : BaseEntity
     )
     {
         Id = Guid.NewGuid().ToString().ToLower();
+        UserAdm = userAdm;
         Nome = nome;
         IdCategoria = idCategoria;
         Descricao = descricao;
