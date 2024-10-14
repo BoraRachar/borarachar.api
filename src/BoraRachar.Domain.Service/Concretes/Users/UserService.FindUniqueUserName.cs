@@ -24,8 +24,7 @@ public partial class UserService
             {
                 return ResponseDto<FindUniqueUserNameResponseDto>.Sucess("Usuario Disponivel.", HttpStatusCode.NoContent);
             }
-
-
+            
             MailAddress enderecoEmail = new MailAddress(users.FirstOrDefault().Email);
             
             string nomeUsuario = enderecoEmail.User;
@@ -56,6 +55,5 @@ public partial class UserService
         {
             logger.LogInformation("Metodo finalizado:{0}", nameof(FindUniqueUserNameAsync));
         }
-        
     }
 }

@@ -3,12 +3,14 @@ using BoraRachar.Application.UserCases.User.CreateNewUser;
 using BoraRachar.Application.UserCases.User.FindOneUser;
 using BoraRachar.Application.UserCases.User.FindUniqueUserName;
 using BoraRachar.Application.UserCases.User.ForgotPassword;
+using BoraRachar.Application.UserCases.User.ListUsers;
 using BoraRachar.Application.UserCases.User.ResetPassword;
 using BoraRachar.Application.UserCases.User.UpdateUser;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.AddNewUser;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.FindOneUser;
 using BoraRachar.Domain.Service.Abstract.Dtos.User.FindUniqueUserName;
+using BoraRachar.Domain.Service.Abstract.Dtos.User.ListUsers;
 using BoraRachar.Infra.CrossCuting;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -84,4 +86,14 @@ public class UserController : ApiControllerBase
         var response = await _mediator.Send(request);
         return CreateResult(response);
     }
+    
+    [HttpGet("list-usuarios")]
+    [ProducesResponseType(typeof(ResponseDto<IEnumerable<ListUsersResponseDto>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult>? ListUsuarios([FromQuery] ListUsersRequest request)
+    {
+        var response = await _mediator.Send(request);
+        return CreateResult(response);
+    }   
 }

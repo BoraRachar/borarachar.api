@@ -32,7 +32,7 @@ public class LoginHandler : IRequestHandler<LoginRequest, ResponseDto<UserLoginR
 		
 		var user = isEmail 
 			? await _userManager.Users.Where(u => u.Email == request.Email).FirstOrDefaultAsync() 
-			: await _userManager.Users.Where(u => u.UserName == request.Email).FirstOrDefaultAsync() ;
+			: await _userManager.Users.Where(u => u.UserName == request.Email).FirstOrDefaultAsync();
 	
 		if (user is null)
 		{

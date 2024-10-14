@@ -25,15 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Dtos\User\ListUsers\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Dtos\User\ListUsers\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Dtos\User\ListUsers\**" />
+    <Compile Include="Dtos\User\ListUsers\ListUsersRequestDto.cs" />
+    <Compile Include="Dtos\User\ListUsers\ListUsersResponseDto.cs" />
   </ItemGroup>
 
 </Project>
