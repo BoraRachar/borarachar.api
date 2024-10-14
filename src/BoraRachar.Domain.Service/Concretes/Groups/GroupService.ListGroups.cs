@@ -35,6 +35,7 @@ public partial class GroupService
             {
                 GrupoId = grupo.Id,
                 Descricao = grupo.Descricao,
+                Img = grupo.ImgGrupo,
                 Participantes = participantes.Count
             };
             itens.Add(itn);
