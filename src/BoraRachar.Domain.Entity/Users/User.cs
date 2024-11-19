@@ -3,15 +3,6 @@
 namespace BoraRachar.Domain.Entity.Users;
 public class User : IdentityUser
 {
-	public User(string email)
-	{
-		Id = Guid.NewGuid().ToString();
-		Email = email;
-		UserName = email;
-		AtivoUsuario = true;
-		DataCadastro = DateTime.Now;
-	}
-
 	public User(string nome, string email,string apelido, string usuario, bool politica, bool termos)
 	{
 		Id = Guid.NewGuid().ToString();

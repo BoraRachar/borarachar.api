@@ -1,4 +1,5 @@
 using System.Net;
+using BoraRachar.Application.Util;
 using BoraRachar.Domain.Entity.Grupos;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
@@ -9,25 +10,33 @@ using Microsoft.Extensions.Logging;
 
 namespace BoraRachar.Domain.Service.Concretes.Groups;
 
-public partial class GroupService 
+public partial class GroupService
 {
     public async Task<ResponseDto<None>> CreateNewGroup(AddGrupoRequestDto request, CancellationToken cancellation)
     {
         logger.LogInformation("Metodo iniciado:{0}", nameof(CreateNewGroup));
         try
         {
-            bool isValidImage = false;
+            var userId = CriptografiaHelper.DecryptQueryString(request.UserCod);
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                return ResponseDto.Fail("Usuario invalido.", HttpStatusCode.BadRequest);
+            }
 
             if (!string.IsNullOrEmpty(request.ImgGrupo))
             {
-                isValidImage = ServiceHelpers.IsBase64Image(request.ImgGrupo);
+                var isValidImage = ServiceHelpers.IsBase64Image(request.ImgGrupo);
                 if (isValidImage.Equals(false))
                 {
                     return ResponseDto.Fail("Imagem invalida.", HttpStatusCode.BadRequest);
                 }
             }
-            
+
             var novoGrupo = new Grupos(
+                userAdm: user.Id,
                 nome: request.Nome,
                 idCategoria: request.IdCategoria,
                 descricao: request.Descricao,
@@ -39,16 +48,16 @@ public partial class GroupService
             await _repository.InsertAsync(novoGrupo, cancellation);
             await _repository.SaveChangeAsync(cancellation);
 
-            if (request?.Participantes?.Count > 0)
+            var addedAdd =
+                await _participantesGrupoService.AddParticipanteGrupoAdmAsync(user.Id, novoGrupo.Id, cancellation);
+
+            if (addedAdd.Equals(false))
             {
-                foreach (var participante in request.Participantes)
-                {
-                    
-                }
+                await _repository.DeleteAsync(novoGrupo, cancellation);
+                return ResponseDto.Fail("Erro ao adicionar o grupo.", HttpStatusCode.BadRequest);
             }
-            
+
             return ResponseDto.Sucess("Cadastrado com sucesso.", HttpStatusCode.Created);
-                  
         }
         catch (Exception e)
         {
@@ -61,6 +70,6 @@ public partial class GroupService
         finally
         {
             logger.LogInformation("Metodo finalizado:{0}", nameof(CreateNewGroup));
-        }        
+        }
     }
 }

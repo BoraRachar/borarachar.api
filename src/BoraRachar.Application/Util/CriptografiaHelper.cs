@@ -7,7 +7,7 @@ namespace BoraRachar.Application.Util;
 
 public static class CriptografiaHelper
 {
-	const string encryptionKey = "Um9kcmlnbyBZb3NoaWthenUgU2FoYXJh"; //Coloque aqui uma chave única
+	const string encryptionKey = "c727757f0f74288eb62b0e4d8d0ce4ac"; //Coloque aqui uma chave única
 	public static string EncryptQueryString(string clearText)
 	{
 		byte[] clearBytes = Encoding.Unicode.GetBytes(clearText);
@@ -48,7 +48,6 @@ public static class CriptografiaHelper
 				cipherText = Encoding.Unicode.GetString(ms.ToArray());
 			}
 		}
-
 		return cipherText;
 	}
 

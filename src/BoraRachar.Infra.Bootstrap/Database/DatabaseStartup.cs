@@ -16,11 +16,10 @@ using DbContext = BoraRachar.Infra.Data.Repository.Orm.Contexts.DbContext;
 namespace BoraRachar.Infra.Bootstrap.Database;
 
 [ExcludeFromCodeCoverage]
-public static class Startup
+public static class tartup
 {
     public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-
         services.AddDbContext<IDbContext, DbContext>(
             opt =>
                 opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
@@ -28,24 +27,23 @@ public static class Startup
         );
 
         services.AddDbContext<DbContextUser>(
-          opt =>
-              opt.UseSqlServer(configuration["ConnectionStrings:Connection"])
+            opt =>
+                opt.UseSqlServer(configuration["ConnectionStrings:Connection"])
         );
 
         services.AddIdentity<User, Roles>(options =>
-        {
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
-            options.Lockout.MaxFailedAccessAttempts = 50;
+            {
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+                options.Lockout.MaxFailedAccessAttempts = 50;
 
-            options.Password.RequireDigit = false;
-            options.Password.RequiredLength = 6;
-            options.Password.RequiredUniqueChars = 1;
-            options.Password.RequireLowercase = false;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = false;
-
-        }).AddEntityFrameworkStores<DbContextUser>()
-          .AddDefaultTokenProviders();
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<DbContextUser>()
+            .AddDefaultTokenProviders();
 
         services.AddAuthentication(opt =>
         {
