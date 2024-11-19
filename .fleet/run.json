@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "BoraRachar API",
+            "type": "dotnet-launch-settings",
+            "environment": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "allowParallelRun": true,
+            "projectPath": "src/BoraRachar.Api/BoraRachar.Api.csproj",
+            "profileName": "Dotne Fleet",
+            "solutionPath": "BoraRachar.sln",
+        },
+    ]
+}

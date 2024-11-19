@@ -17,10 +17,12 @@ public partial class UserService
         try
         {
             bool isEmail = CriptografiaHelper.VerifyEmail(request.Email);
+            
+            var userId = CriptografiaHelper.DecryptQueryString(request.UserCod);
 		
             var users = isEmail 
                 ? await _userManager.Users.Where(u => u.Email.Contains(request.Email)).ToListAsync() 
-                : await _userManager.Users.Where(u => u.UserName.Contains(request.Email)).ToListAsync();
+                : await _userManager.Users.Where(u => u.Nome.Contains(request.Email)).ToListAsync();
             
             var data = new List<ListUsersResponseDto>();
             
@@ -28,9 +30,9 @@ public partial class UserService
             {
                 var userDto = new ListUsersResponseDto
                 {
-
+                    AmigoId = user.Id,
                     Email = user.Email,
-                    UserName = user.UserName,
+                    UserName = user.UserName
                 };
                 data.Add(userDto);
             }
@@ -41,7 +43,7 @@ public partial class UserService
             }
             else
             {
-                return ResponseDto<IEnumerable<ListUsersResponseDto>>.Sucess(data.ToList());
+                return ResponseDto<IEnumerable<ListUsersResponseDto>>.Sucess(data.Where(a => a.AmigoId != userId).ToList());
             }
         }
         catch (Exception e)

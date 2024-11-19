@@ -26,11 +26,9 @@ public partial class GroupService
                 return ResponseDto.Fail("Usuario invalido.", HttpStatusCode.BadRequest);
             }
 
-            bool isValidImage = false;
-
             if (!string.IsNullOrEmpty(request.ImgGrupo))
             {
-                isValidImage = ServiceHelpers.IsBase64Image(request.ImgGrupo);
+                var isValidImage = ServiceHelpers.IsBase64Image(request.ImgGrupo);
                 if (isValidImage.Equals(false))
                 {
                     return ResponseDto.Fail("Imagem invalida.", HttpStatusCode.BadRequest);

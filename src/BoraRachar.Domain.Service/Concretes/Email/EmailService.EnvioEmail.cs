@@ -14,7 +14,7 @@ public partial class EmailService
         Configuration.Default.ApiKey.Add("api-key", smtpKey);
 
         var apiInstance = new TransactionalEmailsApi();
-        string SenderName = "Bora Rachar";
+        string SenderName = "Bora Rachar!";
         string SenderEmail = "suporte.borarachar@gmail.com";
         SendSmtpEmailSender Email = new SendSmtpEmailSender(SenderName, SenderEmail);
 
@@ -94,8 +94,4 @@ public partial class EmailService
 
         return html;
     }
-
-
-
-
 }

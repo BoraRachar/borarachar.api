@@ -2,31 +2,25 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-	<InvariantGlobalization>false</InvariantGlobalization>
+    <InvariantGlobalization>false</InvariantGlobalization>
     <RootNamespace>BoraRachar.Domain.Service.Abstract</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup> 
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="12.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="AutoMapper" Version="12.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0"/>
   </ItemGroup>
 
   <ItemGroup>   
-    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj" />
-    <ProjectReference Include="..\BoraRachar.Infra.CrossCuting\BoraRachar.Infra.CrossCuting.csproj" />
-    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj" />
-    <ProjectReference Include="..\BoraRachar.Infra.CrossCuting\BoraRachar.Infra.CrossCuting.csproj" />
+    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj"/>
+    <ProjectReference Include="..\BoraRachar.Infra.CrossCuting\BoraRachar.Infra.CrossCuting.csproj"/>
+    <ProjectReference Include="..\BoraRachar.Domain.Entity\BoraRachar.Domain.Entity.csproj"/>
+    <ProjectReference Include="..\BoraRachar.Infra.CrossCuting\BoraRachar.Infra.CrossCuting.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\User\CodigoUsers\" />
+    <Folder Include="Dtos\User\CodigoUsers\"/>
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="Dtos\User\ListUsers\ListUsersRequestDto.cs" />
-    <Compile Include="Dtos\User\ListUsers\ListUsersResponseDto.cs" />
-  </ItemGroup>
-
 </Project>
