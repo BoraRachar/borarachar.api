@@ -19,6 +19,13 @@ public partial class AmizadeService
         {
             var userId = CriptografiaHelper.DecryptQueryString(request.UserCod);
 
+            var existAmizade = await VerifyAmizade(userId, request.AmigoId, cancellationToken);
+
+            if (existAmizade.Equals(true))
+            {
+                return ResponseDto.Fail("Amizade já pedida.", HttpStatusCode.BadRequest);
+            }
+            
             var amigo = new Amizade(userId, request.AmigoId);
             await _repository.InsertAsync(amigo, cancellationToken);
             await _repository.SaveChangeAsync(cancellationToken);
