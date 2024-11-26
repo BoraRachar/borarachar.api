@@ -21,12 +21,18 @@ public partial class AmizadeService
         {
             var userId = CriptografiaHelper.DecryptQueryString(request.UserCod);
             
-            var amizade = await _repository.Query.Where(a => a.AmigoId == userId && a.UserId == request.AmigoId && a.Approved.Equals(false)).FirstOrDefaultAsync();
-          
-            await _repository.DeleteAsync(amizade, cancellationToken);
-            await _repository.SaveChangeAsync(cancellationToken);
-            
-            return ResponseDto.Sucess("Sucesso.", HttpStatusCode.OK);
+            var amizade = await _repository.GetByOneAsync(a => a.AmigoId == userId && a.UserId == request.AmigoId && a.Approved.Equals(false), cancellationToken);
+
+            if (amizade != null)
+            {
+                await _repository.DeleteAsync(amizade, cancellationToken);
+                await _repository.SaveChangeAsync(cancellationToken);
+                return ResponseDto.Sucess("Sucesso.", HttpStatusCode.OK);
+            }
+            else
+            {
+                return ResponseDto.Fail(HttpStatusCode.BadRequest);
+            }
         }
         catch (Exception e)
         {

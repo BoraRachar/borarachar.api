@@ -34,7 +34,7 @@ public partial class AmizadeService
                 var user = await _userManager.FindByIdAsync(amizade.UserId);
                 itens.Add(new ListPendenciasAmizadesResponseDto
                 {
-                    AmigoId = amizade.Id,
+                    AmigoId = amizade.UserId,
                     Nome = user.Nome,
                     Aceite = (bool)amizade.Approved
                 });
