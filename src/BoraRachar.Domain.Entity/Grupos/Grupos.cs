@@ -34,7 +34,7 @@ public class Grupos : BaseEntity
     [ForeignKey("Categorias")]
     public string IdCategoria { get; private set; }
     public string Descricao { get; private set; }
-    public string ImgGrupo { get; private set; }
+    public string? ImgGrupo { get; private set; }
     public int TipoDivisao { get; set; }
     public bool Deleted { get; private set; }
     public bool Ativo { get; private set; }
@@ -43,5 +43,5 @@ public class Grupos : BaseEntity
     public string? OutrasCategorias { get; private set; }
     public DateTime DataCadastro { get; private set; }
     public DateTime? DataAtualizacao { get; private set; }
-    public string[] Participantes { get; set; }
+    public string[]? Participantes { get; set; }
 }

@@ -1,4 +1,5 @@
 using AutoMapper;
+using BoraRachar.Domain.Entity.Amizades;
 using BoraRachar.Domain.Entity.Grupos;
 using BoraRachar.Domain.Entity.Users;
 using BoraRachar.Domain.Repository.Orm.Abstract.Repositories;
@@ -16,13 +17,14 @@ public partial class ParticipantesGrupoService: BaseService, IParticipantesGrupo
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
     private readonly IBaseRepository<Grupos> _repositoryGrupos;
+    private readonly IBaseRepository<Amizade> _repositoryAmizade;
     private readonly IBaseRepository<Entity.Grupos.ParticipantesGrupo> _repositoryParticipantesGrupo;
     
     public ParticipantesGrupoService(
         IConfiguration config,
         IMapper mapper,
         UserManager<User> userManager,
-        
+        IBaseRepository<Amizade> repositoryAmizade, 
         IBaseRepository<Grupos> repositoryGrupos,
         IBaseRepository<Entity.Grupos.ParticipantesGrupo> repositoryParticipantesGrupo,
         ILogger<ParticipantesGrupoService> logger): base(logger)
@@ -32,5 +34,6 @@ public partial class ParticipantesGrupoService: BaseService, IParticipantesGrupo
         _userManager = userManager;
         _repositoryGrupos = repositoryGrupos;
         _repositoryParticipantesGrupo = repositoryParticipantesGrupo;
+        _repositoryAmizade = repositoryAmizade;
     }
 }

@@ -2,7 +2,7 @@ namespace BoraRachar.Domain.Service.Concretes.ParticipantesGrupo;
 
 public partial class ParticipantesGrupoService
 {
-    public async Task<bool> AddParticipanteGrupoAdmAsync(string userId, string grupoId, CancellationToken cancellation)
+    public async Task AddParticipanteGrupoAdmAsync(string userId, string grupoId, CancellationToken cancellation)
     {
         var admGrupo = new Entity.Grupos.ParticipantesGrupo
         {
@@ -14,8 +14,7 @@ public partial class ParticipantesGrupoService
         };
 
         await _repositoryParticipantesGrupo.InsertAsync(admGrupo, cancellation);
-        var result =  await _repositoryParticipantesGrupo.SaveChangeAsync(cancellation);
-
-        return result;
+        await _repositoryParticipantesGrupo.SaveChangeAsync(cancellation);
+       
     }
 }

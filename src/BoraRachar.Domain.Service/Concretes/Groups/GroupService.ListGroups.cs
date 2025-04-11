@@ -22,13 +22,11 @@ public partial class GroupService
             return ResponseDto<IEnumerable<ListGroupResponseDto>>.Fail("Usuario invalido.", HttpStatusCode.BadRequest);
         }
 
-        var metaData = new MetaDataResponse();
-
-        var listGrupos = await _repository.GetByAsync(g => g.UserAdm == adm.Id, cancellation);
+        var grupos = await _repository.GetByAsync(g => g.UserAdm == adm.Id, cancellation);
 
         var itens = new List<ListGroupResponseDto>();
 
-        foreach (var grupo in listGrupos.Where(g => g.Ativo == true && g.Deleted != true))
+        foreach (var grupo in grupos.Where(g => g.Ativo == true && g.Deleted != true))
         {
             var participantes = await _participantesGrupoService.CountParticipantesGrupoAsync(grupo.Id, cancellation);
             var itn = new ListGroupResponseDto
@@ -36,10 +34,12 @@ public partial class GroupService
                 GrupoId = grupo.Id,
                 Descricao = grupo.Descricao,
                 Img = grupo.ImgGrupo,
-                Participantes = participantes.Count
+                Participantes = participantes
             };
             itens.Add(itn);
         }
+        
+        var metaData = new MetaDataResponse();
 
         logger.LogInformation("Metodo finalizado:{0}", nameof(ListGroupsAsync));
 
