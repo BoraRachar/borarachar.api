@@ -1,13 +1,10 @@
 
 using System.Net;
 using BoraRachar.Application.Util;
-using BoraRachar.Domain.Entity.Amizades;
 using BoraRachar.Domain.Service.Abstract.Dtos.Amizades.Aceite;
-using BoraRachar.Domain.Service.Abstract.Dtos.Amizades.AddAmigo;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Infra.CrossCuting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BoraRachar.Domain.Service.Concretes.Amizades;
