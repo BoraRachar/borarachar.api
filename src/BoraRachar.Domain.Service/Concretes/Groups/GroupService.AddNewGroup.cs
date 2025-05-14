@@ -4,7 +4,6 @@ using BoraRachar.Domain.Entity.Grupos;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.Grupos.AddGrupo;
-using BoraRachar.Domain.Service.Concretes.Helpers;
 using BoraRachar.Infra.CrossCuting;
 using Microsoft.Extensions.Logging;
 

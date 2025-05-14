@@ -31,10 +31,11 @@ public partial class GroupService
             var participantes = await _participantesGrupoService.CountParticipantesGrupoAsync(grupo.Id, cancellation);
             var itn = new ListGroupResponseDto
             {
+                Nome = grupo.Nome,
                 GrupoId = grupo.Id,
-                Descricao = grupo.Descricao,
-                Img = grupo.ImgGrupo,
-                Participantes = participantes
+                Descricao = grupo.Descricao!,
+                ImgGrupo = grupo.ImgGrupo!,
+                TotalParticipantes = participantes
             };
             itens.Add(itn);
         }

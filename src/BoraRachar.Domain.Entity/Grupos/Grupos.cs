@@ -33,7 +33,7 @@ public class Grupos : BaseEntity
     public string Nome { get; private set; }
     [ForeignKey("Categorias")]
     public string IdCategoria { get; private set; }
-    public string Descricao { get; private set; }
+    public string? Descricao { get; private set; }
     public string? ImgGrupo { get; private set; }
     public int TipoDivisao { get; set; }
     public bool Deleted { get; private set; }
