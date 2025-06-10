@@ -366,6 +366,7 @@ FodyWeavers.xsd
 
 # JetBrains IDE
 .idea
+.fleet
 
 # App Settings
 appsettings.json

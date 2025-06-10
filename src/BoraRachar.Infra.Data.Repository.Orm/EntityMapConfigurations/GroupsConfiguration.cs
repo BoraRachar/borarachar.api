@@ -20,8 +20,8 @@ public class GruposConfiguration : IEntityTypeConfiguration<Grupos>
             .IsRequired();
 
         builder.Property(x => x.Descricao)
-            .HasColumnName("Descricao")
-            .IsRequired();
+            .HasColumnName("Descricao");
+            
         
         builder.Property(x => x.IdCategoria)
             .HasColumnName("IdCategoria")

@@ -4,6 +4,7 @@ using BoraRachar.Domain.Service.Abstract.Interfaces.Categorias;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Convites;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Email;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Groups;
+using BoraRachar.Domain.Service.Abstract.Interfaces.Participantes;
 using BoraRachar.Domain.Service.Abstract.Interfaces.ParticipantesGrupos;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Users;
 using BoraRachar.Domain.Service.Concretes.Amizades;
@@ -11,6 +12,7 @@ using BoraRachar.Domain.Service.Concretes.Categorias;
 using BoraRachar.Domain.Service.Concretes.Convites;
 using BoraRachar.Domain.Service.Concretes.Email;
 using BoraRachar.Domain.Service.Concretes.Groups;
+using BoraRachar.Domain.Service.Concretes.Participantes;
 using BoraRachar.Domain.Service.Concretes.ParticipantesGrupo;
 using BoraRachar.Domain.Service.Concretes.Users;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +39,8 @@ public static class ServiceStartup
 		services.AddScoped<IAmizadeService, AmizadeService>();
 		// Convites
 		services.AddScoped<IConviteService, ConviteService>();
+		// Participantes
+		services.AddScoped<IParticipantesService, ParticipantesService>();
 
 		return services;
 	}

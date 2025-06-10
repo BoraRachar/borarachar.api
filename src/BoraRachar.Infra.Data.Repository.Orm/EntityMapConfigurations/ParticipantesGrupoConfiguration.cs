@@ -26,6 +26,9 @@ public class ParticipantesGrupoConfiguration: IEntityTypeConfiguration<Participa
         builder.Property(x => x.IsAdm)
             .HasColumnName("IsAdm");
         
+        builder.Property(x => x.HasPendent)
+            .HasColumnName("HasPendent");
+        
         builder.Property(x => x.DataCadastro)
             .HasColumnName("DataCadastro")
             .IsRequired();

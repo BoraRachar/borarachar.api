@@ -8,8 +8,6 @@ public class AdicionarGruposValidator : RequestValidator<AdicionarGrupoRequest>
 {
     public AdicionarGruposValidator()
     {
-        RuleFor(r => r.Descricao)
-            .NotEmpty()
-            .WithMessage("Por favor, informe a descricao");
+       
     }
 }

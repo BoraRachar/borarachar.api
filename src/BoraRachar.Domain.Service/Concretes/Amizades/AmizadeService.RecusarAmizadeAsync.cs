@@ -1,13 +1,10 @@
 
 using System.Net;
 using BoraRachar.Application.Util;
-using BoraRachar.Domain.Entity.Amizades;
 using BoraRachar.Domain.Service.Abstract.Dtos.Amizades.Aceite;
-using BoraRachar.Domain.Service.Abstract.Dtos.Amizades.AddAmigo;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Infra.CrossCuting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace BoraRachar.Domain.Service.Concretes.Amizades;
@@ -20,12 +17,19 @@ public partial class AmizadeService
         try
         {
             var userId = CriptografiaHelper.DecryptQueryString(request.UserCod);
-            var amizade = await _repository.Query.Where(a => a.Id == request.AmigoId && a.UserId == userId).FirstOrDefaultAsync();
-          
-            await _repository.DeleteAsync(amizade, cancellationToken);
-            await _repository.SaveChangeAsync(cancellationToken);
             
-            return ResponseDto.Sucess("Sucesso.", HttpStatusCode.Created);
+            var amizade = await _repository.GetByOneAsync(a => a.AmigoId == userId && a.UserId == request.AmigoId && a.Approved.Equals(false), cancellationToken);
+
+            if (amizade != null)
+            {
+                await _repository.DeleteAsync(amizade, cancellationToken);
+                await _repository.SaveChangeAsync(cancellationToken);
+                return ResponseDto.Sucess("Sucesso.", HttpStatusCode.OK);
+            }
+            else
+            {
+                return ResponseDto.Fail(HttpStatusCode.BadRequest);
+            }
         }
         catch (Exception e)
         {

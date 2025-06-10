@@ -24,5 +24,6 @@ public class ParticipantesGrupo: BaseEntity
     [ForeignKey("User")]
     public string UserId { get; set; }
     public bool IsAdm { get; set; }
+    public bool? HasPendent { get; set; }
     public DateTime DataCadastro { get; set; }
 }

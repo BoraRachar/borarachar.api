@@ -44,4 +44,13 @@ public partial class AmizadeService: BaseService, IAmizadeService
         _repositoryGrupo = repositoryGrupo;
         _repositoryParticipantesGrupo = repositoryParticipantesGrupo;
     }
+
+    private async Task<bool> VerifyAmizade(string userId, string amigoId, CancellationToken cancellationToken)
+    {
+        bool hasAmizade = false;
+
+        var amizade = await _repository.GetByAsync(a => (a.UserId == userId && a.AmigoId == amigoId) || (a.AmigoId == userId && a.UserId == amigoId), cancellationToken);
+
+        return amizade.Count() > 0;
+    }
 }

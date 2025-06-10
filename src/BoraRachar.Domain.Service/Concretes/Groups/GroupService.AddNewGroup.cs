@@ -4,7 +4,6 @@ using BoraRachar.Domain.Entity.Grupos;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.Grupos.AddGrupo;
-using BoraRachar.Domain.Service.Concretes.Helpers;
 using BoraRachar.Infra.CrossCuting;
 using Microsoft.Extensions.Logging;
 
@@ -25,15 +24,7 @@ public partial class GroupService
             {
                 return ResponseDto.Fail("Usuario invalido.", HttpStatusCode.BadRequest);
             }
-
-            if (!string.IsNullOrEmpty(request.ImgGrupo))
-            {
-                var isValidImage = ServiceHelpers.IsBase64Image(request.ImgGrupo);
-                if (isValidImage.Equals(false))
-                {
-                    return ResponseDto.Fail("Imagem invalida.", HttpStatusCode.BadRequest);
-                }
-            }
+           
 
             var novoGrupo = new Grupos(
                 userAdm: user.Id,
@@ -48,13 +39,12 @@ public partial class GroupService
             await _repository.InsertAsync(novoGrupo, cancellation);
             await _repository.SaveChangeAsync(cancellation);
 
-            var addedAdd =
-                await _participantesGrupoService.AddParticipanteGrupoAdmAsync(user.Id, novoGrupo.Id, cancellation);
+            await _participantesGrupoService.AddParticipanteGrupoAdmAsync(user.Id, novoGrupo.Id, cancellation);
 
-            if (addedAdd.Equals(false))
+
+            if (request.Participantes != null && request.Participantes.Count > 0)
             {
-                await _repository.DeleteAsync(novoGrupo, cancellation);
-                return ResponseDto.Fail("Erro ao adicionar o grupo.", HttpStatusCode.BadRequest);
+                await _participantesGrupoService.AddParticipanteGrupoAsync(request.Participantes, novoGrupo.Id, user.Id, cancellation);
             }
 
             return ResponseDto.Sucess("Cadastrado com sucesso.", HttpStatusCode.Created);

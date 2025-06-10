@@ -1,9 +1,6 @@
-
 using System.Net;
 using BoraRachar.Application.Util;
-using BoraRachar.Domain.Entity.Amizades;
 using BoraRachar.Domain.Service.Abstract.Dtos.Amizades.Aceite;
-using BoraRachar.Domain.Service.Abstract.Dtos.Amizades.AddAmigo;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Infra.CrossCuting;
@@ -21,7 +18,7 @@ public partial class AmizadeService
         {
             var userId = CriptografiaHelper.DecryptQueryString(request.UserCod);
 
-            var amizade = await _repository.Query.Where(a => a.Id == request.AmigoId && a.UserId == userId).FirstOrDefaultAsync();
+            var amizade = await _repository.Query.Where(a => a.AmigoId == userId && a.UserId == request.AmigoId).FirstOrDefaultAsync();
 
             amizade.Approved = true;
             amizade.DataAprovacao = DateTime.Now;
