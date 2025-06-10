@@ -2,6 +2,7 @@ using BoraRachar.Api.Controllers.Bases;
 using BoraRachar.Application.GruposCases.AdicionarGrupos;
 using BoraRachar.Application.GruposCases.FindOneGrupo;
 using BoraRachar.Application.GruposCases.ListGrupos;
+using BoraRachar.Application.GruposCases.UpdateGrupos;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.Grupos.FindOneGrupo;
 using BoraRachar.Domain.Service.Abstract.Dtos.Grupos.ListGroups;
@@ -26,6 +27,16 @@ public class GruposController : ApiControllerBase
         return CreateResult(response);
     }
     
+    [HttpPut]
+    [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateGrupo([FromBody] UpdateGruposRequest grupoRequest)
+    {
+        var response = await _mediator.Send(grupoRequest);
+        return CreateResult(response);
+    }
+    
     [HttpGet("detalhes-grupo")]
     [ProducesResponseType(typeof(ResponseDto<FindOneGrupoResponseDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -35,7 +46,6 @@ public class GruposController : ApiControllerBase
         var response = await _mediator.Send(request);
         return CreateResult(response);
     }
-    
 
     [HttpGet("lista-grupos")]
     [ProducesResponseType(typeof(ResponseDto<IEnumerable<ListGroupResponseDto>>), StatusCodes.Status200OK)]

@@ -6,6 +6,11 @@ namespace BoraRachar.Domain.Entity.Grupos;
 
 public class Grupos : BaseEntity
 {
+
+    public Grupos()
+    {
+        
+    }
     public Grupos(
         string userAdm,
         string nome, 
@@ -30,18 +35,18 @@ public class Grupos : BaseEntity
         DataAtualizacao = DateTime.UtcNow;
     }
 
-    public string Nome { get; private set; }
+    public string Nome { get; set; }
     [ForeignKey("Categorias")]
-    public string IdCategoria { get; private set; }
-    public string? Descricao { get; private set; }
-    public string? ImgGrupo { get; private set; }
+    public string IdCategoria { get; set; }
+    public string? Descricao { get; set; }
+    public string? ImgGrupo { get; set; }
     public int TipoDivisao { get; set; }
-    public bool Deleted { get; private set; }
-    public bool Ativo { get; private set; }
-    public string? LinkConvite { get; private set; }
-    public string UserAdm { get; private set; }
-    public string? OutrasCategorias { get; private set; }
-    public DateTime DataCadastro { get; private set; }
-    public DateTime? DataAtualizacao { get; private set; }
+    public bool Deleted { get; set; }
+    public bool Ativo { get; set; }
+    public string? LinkConvite { get; set; }
+    public string UserAdm { get; set; }
+    public string? OutrasCategorias { get; set; }
+    public DateTime DataCadastro { get; set; }
+    public DateTime? DataAtualizacao { get; set; }
     public string[]? Participantes { get; set; }
 }
