@@ -11,6 +11,7 @@ public class ParticipanteDepesa: BaseEntity
 
     public ParticipanteDepesa(string idDespesa, string idGrupo, string idParticipante, bool isPagador = false, bool isRecebedor = false)
     {
+        Id = Guid.NewGuid().ToString().ToLower();
         IdDespesa = idDespesa;
         IdGrupo = idGrupo;
         IdParticipantesGrupo = idParticipante;
