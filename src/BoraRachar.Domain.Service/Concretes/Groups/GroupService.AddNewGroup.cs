@@ -24,7 +24,6 @@ public partial class GroupService
             {
                 return ResponseDto.Fail("Usuario invalido.", HttpStatusCode.BadRequest);
             }
-           
 
             var novoGrupo = new Grupos(
                 userAdm: user.Id,
@@ -41,10 +40,9 @@ public partial class GroupService
 
             await _participantesGrupoService.AddParticipanteGrupoAdmAsync(user.Id, novoGrupo.Id, cancellation);
 
-
             if (request.Participantes != null && request.Participantes.Count > 0)
             {
-                await _participantesGrupoService.AddParticipanteGrupoAsync(request.Participantes, novoGrupo.Id, user.Id, cancellation);
+                await _participantesGrupoService.AddParticipanteGrupoAsync(request.Participantes, user.Id, novoGrupo.Id, cancellation);
             }
 
             return ResponseDto.Sucess("Cadastrado com sucesso.", HttpStatusCode.Created);

@@ -25,7 +25,7 @@ public partial class EmailService
 
         string HtmlContent = CorpoEmail(request.Mensagem);
         string Subject = request.Titulo;
-
+    
         try
         {
             var sendSmtpEmail = new SendSmtpEmail(Email, To, null, null, HtmlContent, null, Subject, null, null, null, null, null, null, null);

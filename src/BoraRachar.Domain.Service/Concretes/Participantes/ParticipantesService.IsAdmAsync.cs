@@ -14,11 +14,8 @@ public partial class ParticipantesService
         logger.LogInformation("Metodo iniciado:{0}", nameof(IsAdmAsync));
         try
         {
-            var grupo = await _repositoryGrupos.GetByIdAsync(request.GrupoId, cancellation);
-
             var participante = await _repositoryParticipantesGrupo.GetByOneAsync(p => p.GrupoId == request.GrupoId 
-                                                                                   && p.UserId == request.ParticipanteId, cancellation);
-
+                                                                                   && p.Id == request.ParticipanteId, cancellation);
 
             if (participante == null)
             {

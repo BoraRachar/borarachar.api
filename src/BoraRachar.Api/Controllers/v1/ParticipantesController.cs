@@ -35,17 +35,7 @@ public class ParticipantesController : ApiControllerBase
     {
         var response = await _mediator.Send(request);
         return CreateResult(response);
-    }
-    
-    [HttpPost("isAdm")]
-    [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> IsAdm([FromBody] IsAdmRequest request)
-    {
-        var response = await _mediator.Send(request);
-        return CreateResult(response);
-    }
+    }  
     
     [HttpDelete("delete-participantes")]
     [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]

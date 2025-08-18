@@ -1,4 +1,5 @@
 using System.Net;
+using BoraRachar.Application.Util;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases;
 using BoraRachar.Domain.Service.Abstract.Dtos.Bases.Responses;
 using BoraRachar.Domain.Service.Abstract.Dtos.Participantes;
@@ -14,6 +15,7 @@ public partial class ParticipantesService
         logger.LogInformation("Metodo iniciado:{0}", nameof(DeleteParticipantesAsync));
         try
         {
+            var userId = CriptografiaHelper.DecryptQueryString(request.UserCod);
             List<Entity.Grupos.ParticipantesGrupo> participantesGrupos = new List<Entity.Grupos.ParticipantesGrupo>();
             foreach (var participante in request.IdParticipantes)
             {

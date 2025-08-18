@@ -18,7 +18,7 @@ builder
     .AddCustomMediatR()
     .AddServices()
     .AddRepositories(builder.Configuration)
-    .AddHangfire(builder.Configuration)
+    // .AddHangfire(builder.Configuration)
     .AddVersion()
     .AddValidation()
     .AddSwaggerApi<RemoveQueryApiVersionParamOperationFilter, RemoveDefaultApiVersionRouteDocumentFilter>(applicationName)

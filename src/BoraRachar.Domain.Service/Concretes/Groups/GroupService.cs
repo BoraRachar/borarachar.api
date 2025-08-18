@@ -18,6 +18,7 @@ public partial class GroupService: BaseService, IGroupService
     private readonly IMapper _mapper;
     private readonly UserManager<User> _userManager;
     private readonly IBaseRepository<Grupos> _repository;
+    private readonly IBaseRepository<Entity.Grupos.ParticipantesGrupo> _repositoryParticipantes;
     private readonly IBaseRepository<Categoria> _repositoryCategoria;
     private readonly IParticipantesGrupoService _participantesGrupoService;
     
@@ -26,6 +27,7 @@ public partial class GroupService: BaseService, IGroupService
         IConfiguration config,
         IMapper mapper,
         UserManager<User> userManager,
+        IBaseRepository<Entity.Grupos.ParticipantesGrupo> repositoryParticipantes,
         IParticipantesGrupoService participantesGrupoService,
         IBaseRepository<Categoria> repositoryCategoria,
         IBaseRepository<Grupos> repository
@@ -37,5 +39,6 @@ public partial class GroupService: BaseService, IGroupService
         _participantesGrupoService = participantesGrupoService;
         _repository = repository;
         _repositoryCategoria = repositoryCategoria;
+        _repositoryParticipantes = repositoryParticipantes;
     }
 }

@@ -365,8 +365,9 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # JetBrains IDE
-.idea
-.fleet
+.idea/*
+.fleet/*
 
 # App Settings
 appsettings.json
+[Dd]oc/*

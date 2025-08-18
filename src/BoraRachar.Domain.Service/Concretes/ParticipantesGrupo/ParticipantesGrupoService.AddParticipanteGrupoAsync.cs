@@ -21,7 +21,7 @@ public partial class ParticipantesGrupoService
                 GrupoId = grupoId,
                 UserId = user.Id,
                 IsAdm = false,
-                DataCadastro = DateTime.Now.AddHours(-3),
+                DataCadastro = DateTime.UtcNow.AddHours(-3),
             };
             
             participantesGrupos.Add(participanteGrupo);

@@ -22,11 +22,13 @@ public partial class GroupService
             return ResponseDto<IEnumerable<ListGroupResponseDto>>.Fail("Usuario invalido.", HttpStatusCode.BadRequest);
         }
 
-        var grupos = await _repository.GetByAsync(g => g.UserAdm == adm.Id, cancellation);
+        var gruposPart = await _repositoryParticipantes.GetByAsync(p => p.UserId == adm.Id, cancellation);
+
+        var gruposAdm = await _repository.GetByAsync(g => g.UserAdm == adm.Id, cancellation);
 
         var itens = new List<ListGroupResponseDto>();
 
-        foreach (var grupo in grupos.Where(g => g.Ativo == true && g.Deleted != true))
+        foreach (var grupo in gruposAdm.Where(g => g.Ativo == true && g.Deleted != true))
         {
             var participantes = await _participantesGrupoService.CountParticipantesGrupoAsync(grupo.Id, cancellation);
             var itn = new ListGroupResponseDto
@@ -38,6 +40,32 @@ public partial class GroupService
                 TotalParticipantes = participantes
             };
             itens.Add(itn);
+        }
+
+        foreach (var gpart in gruposPart)
+        {
+            var existGrupo = itens.Any(g => g.GrupoId == gpart.GrupoId);
+
+            if (existGrupo.Equals(false))
+            {
+                if (gpart.GrupoId != adm.Id)
+                {
+                    var grupo = await _repository.GetByOneAsync(g => g.Id == gpart.GrupoId, cancellation);
+                    if (grupo != null)
+                    {
+                        var participantes = await _participantesGrupoService.CountParticipantesGrupoAsync(gpart.GrupoId, cancellation);
+                        var itn = new ListGroupResponseDto
+                        {
+                            Nome = grupo.Nome,
+                            GrupoId = grupo.Id,
+                            Descricao = grupo.Descricao!,
+                            ImgGrupo = grupo.ImgGrupo!,
+                            TotalParticipantes = participantes
+                        };
+                        itens.Add(itn);
+                    }
+                }
+            }
         }
         
         var metaData = new MetaDataResponse();
