@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using BoraRachar.Domain.Entity.Bases;
 using BoraRachar.Domain.Entity.Users;
 using BoraRachar.Domain.Repository.Orm.Abstract.Contexts;
 using BoraRachar.Domain.Repository.Orm.Abstract.Repositories;
