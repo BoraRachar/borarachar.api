@@ -14,14 +14,14 @@ public partial class ConviteService: BaseService, IConviteService
     private readonly IConfiguration _config;
     private readonly IMapper _mapper;
     private readonly IBaseRepository<Convite> _repository;
-    private readonly IEmailService _emailService;
+    private readonly INovoEmailService _emailService;
 
 
     public ConviteService(
         IMapper mapper,
         IBaseRepository<Convite> repository,
         IConfiguration config,
-        IEmailService emailService,
+        INovoEmailService emailService,
         ILogger<ConviteService> logger) : base(logger)
     {
         _repository = repository;
