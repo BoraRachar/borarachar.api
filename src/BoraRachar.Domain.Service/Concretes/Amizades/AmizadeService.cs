@@ -20,14 +20,14 @@ public partial class AmizadeService: BaseService, IAmizadeService
     private readonly IBaseRepository<Convite> _repositoryConvite;
     private readonly IBaseRepository<Grupos> _repositoryGrupo;
     private readonly IBaseRepository<Entity.Grupos.ParticipantesGrupo> _repositoryParticipantesGrupo;
-    private readonly IEmailService _emailService;
+    private readonly INovoEmailService _emailService;
     private readonly UserManager<User> _userManager;
     
     public AmizadeService(
         ILogger<AmizadeService> logger,
         IMapper mapper,
         IConfiguration config,
-        IEmailService emailService,
+        INovoEmailService emailService,
         IBaseRepository<Amizade> repository,
         IBaseRepository<Convite> repositoryConvite,
         IBaseRepository<Entity.Grupos.ParticipantesGrupo> repositoryParticipantesGrupo,
