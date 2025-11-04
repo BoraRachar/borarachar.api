@@ -17,7 +17,7 @@ public partial class UserService : BaseService, IUserService
     private readonly IBaseRepository<UserEntity> _repository;
     private readonly IBaseRepository<VerifyUser> _repositoryVerifyUser;
     private readonly UserManager<User> _userManager;
-    private readonly IEmailService _emailService;
+    private readonly INovoEmailService _emailService;
 
     public UserService(ILogger<UserService> logger,
         IMapper mapper,
@@ -25,7 +25,7 @@ public partial class UserService : BaseService, IUserService
         IBaseRepository<VerifyUser> repositoryVerifyUser,
         UserManager<User> userManager,
         IConfiguration config,
-        IEmailService emailService) : base(logger)
+        INovoEmailService emailService) : base(logger)
     {
         _mapper = mapper;
         _repository = repository;
