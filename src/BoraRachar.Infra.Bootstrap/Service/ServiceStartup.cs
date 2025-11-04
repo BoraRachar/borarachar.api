@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Amizades;
+using BoraRachar.Domain.Service.Abstract.Interfaces.Atividades;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Categorias;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Convites;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Despesas;
@@ -9,6 +10,7 @@ using BoraRachar.Domain.Service.Abstract.Interfaces.Participantes;
 using BoraRachar.Domain.Service.Abstract.Interfaces.ParticipantesGrupos;
 using BoraRachar.Domain.Service.Abstract.Interfaces.Users;
 using BoraRachar.Domain.Service.Concretes.Amizades;
+using BoraRachar.Domain.Service.Concretes.Atividades;
 using BoraRachar.Domain.Service.Concretes.Categorias;
 using BoraRachar.Domain.Service.Concretes.Convites;
 using BoraRachar.Domain.Service.Concretes.Despesas;
@@ -31,7 +33,7 @@ public static class ServiceStartup
 		services.AddScoped<IAcessManager, AccessManager>();
 		
 		//Email
-		services.AddScoped<IEmailSender, EmailSenderService>();
+		services.AddScoped<IEmailService, EmailService>();
 
 		// Categorias
 		services.AddScoped<ICategoriaService, CategoriaService>();
@@ -47,6 +49,8 @@ public static class ServiceStartup
 		services.AddScoped<IParticipantesService, ParticipantesService>();
 		// Despesas
 		services.AddScoped<IDespesaService, DespesaService>();
+		// Atividades
+		services.AddScoped<IAtividadeService, AtividadeService>();
 		return services;
 	}
 }

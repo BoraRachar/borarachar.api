@@ -5,7 +5,7 @@ namespace BoraRachar.Domain.Service.Concretes.Helpers;
 
 public class ServiceHelpers
 {
-    public static TipoDivisao GetEnumValue(int tipo)
+    public static TipoDivisao GetTipoDivisao(int tipo)
     {
         System.Enum.TryParse(tipo.ToString(), out TipoDivisao value);
 
